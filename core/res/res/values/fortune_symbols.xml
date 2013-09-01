@@ -13,6 +13,11 @@
     <java-symbol type="bool" name="config_dt2sGestureAvailable" />
     <java-symbol type="bool" name="config_dt2sGestureEnabledByDefault" />
 
+    <!-- Package Manager -->
+    <java-symbol type="array" name="config_deviceDisabledComponents" />
+    <java-symbol type="array" name="config_globallyDisabledComponents" />
+    <java-symbol type="array" name="config_forceEnabledComponents" />
+
     <!-- Pocket Lock -->
     <java-symbol type="layout" name="pocket_lock_view" />
 
