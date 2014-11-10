@@ -17,6 +17,7 @@
 package com.android.systemui.shade;
 
 import static android.app.StatusBarManager.WINDOW_STATE_SHOWING;
+import static android.provider.Settings.Secure.STATUS_BAR_QUICK_QS_PULLDOWN;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
@@ -4729,6 +4730,7 @@ public final class NotificationPanelViewController implements ShadeSurface, Dump
             }
             mConfigurationController.addCallback(mConfigurationListener);
             mTunerService.addTunable(this, DOUBLE_TAP_SLEEP_GESTURE);
+            mTunerService.addTunable(this, STATUS_BAR_QUICK_QS_PULLDOWN);
             // Theme might have changed between inflating this view and attaching it to the
             // window, so
             // force a call to onThemeChanged
@@ -4753,6 +4755,9 @@ public final class NotificationPanelViewController implements ShadeSurface, Dump
         public void onTuningChanged(String key, String newValue) {
             if (DOUBLE_TAP_SLEEP_GESTURE.equals(key)) {
                 mDoubleTapToSleepEnabled = TunerService.parseIntegerSwitch(newValue, true);
+            } else if (STATUS_BAR_QUICK_QS_PULLDOWN.equals(key)) {
+                mQsController.setOneFingerQsIntercept(
+                        TunerService.parseIntegerSwitch(newValue, false));
             }
         }
     }
