@@ -35,4 +35,5 @@ interface ScreenDecorationsModule {
     @Binds
     @IntoSet
     fun bindScreenDecorationsConfigListener(impl: ScreenDecorations): ConfigurationListener
+
 }
