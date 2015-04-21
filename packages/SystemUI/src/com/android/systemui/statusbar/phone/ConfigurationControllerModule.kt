@@ -30,4 +30,5 @@ interface ConfigurationControllerModule {
     @IntoMap
     @ClassKey(ConfigurationControllerStartable::class)
     fun bindConfigControllerStartable(impl: ConfigurationControllerStartable): CoreStartable
+
 }
