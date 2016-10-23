@@ -18,6 +18,10 @@ package com.android.internal.util.fortune;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.os.RemoteException;
 import android.view.IWindowManager;
@@ -37,5 +41,25 @@ public class FortuneUtils {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+    }
+
+    // Check to see if a package is installed
+    public static boolean isPackageInstalled(Context context, String pkg, boolean ignoreState) {
+        if (pkg != null) {
+            try {
+                PackageInfo pi = context.getPackageManager().getPackageInfo(pkg, 0);
+                if (!pi.applicationInfo.enabled && !ignoreState) {
+                    return false;
+                }
+            } catch (NameNotFoundException e) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static boolean isPackageInstalled(Context context, String pkg) {
+        return isPackageInstalled(context, pkg, true);
     }
 }
