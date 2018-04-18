@@ -6,6 +6,7 @@
 package com.android.systemui.fortune
 
 import com.android.systemui.qs.tileimpl.QSTileImpl
+import com.android.systemui.qs.tiles.AODTile
 import com.android.systemui.qs.tiles.PowerShareTile
 import com.android.systemui.qs.tiles.HeadsUpTile
 import dagger.Binds
@@ -15,6 +16,12 @@ import dagger.multibindings.StringKey
 
 @Module
 interface FortuneOSModule {
+
+    /** Inject AODTile into tileMap in QSModule */
+    @Binds
+    @IntoMap
+    @StringKey(AODTile.TILE_SPEC)
+    fun bindAODTile(aodTile: AODTile): QSTileImpl<*>
 
     /** Inject PowerShareTile into tileMap in QSModule */
     @Binds
