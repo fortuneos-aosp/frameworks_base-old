@@ -212,4 +212,10 @@ public class DemoModeFragment extends PreferenceFragment implements OnPreference
             updateDemoModeOn();
         }
     };
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
+    }
 }
