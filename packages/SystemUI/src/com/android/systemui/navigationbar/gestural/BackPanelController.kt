@@ -181,6 +181,8 @@ internal constructor(
 
     private val failsafeRunnable = Runnable { onFailsafe() }
 
+    private var edgeHapticEnabled = false
+
     internal enum class GestureState {
         /* Arrow is off the screen and invisible */
         GONE,
@@ -666,6 +668,10 @@ internal constructor(
         windowManager.addView(mView, layoutParams)
     }
 
+    override fun setEdgeHapticEnabled(enabled: Boolean) {
+        edgeHapticEnabled = enabled
+    }
+
     private fun isFlungAwayFromEdge(endX: Float, startX: Float = touchDeltaStartX): Boolean {
         val flingDistance = if (mView.isLeftPanel) endX - startX else startX - endX
         val flingVelocity =
@@ -990,6 +996,7 @@ internal constructor(
     }
 
     private fun performDeactivatedHapticFeedback() {
+        if (edgeHapticEnabled)
         vibratorHelper.performHapticFeedback(
                 mView,
                 HapticFeedbackConstants.GESTURE_THRESHOLD_DEACTIVATE
@@ -997,6 +1004,7 @@ internal constructor(
     }
 
     private fun performActivatedHapticFeedback() {
+        if (edgeHapticEnabled)
         vibratorHelper.performHapticFeedback(
                 mView,
                 HapticFeedbackConstants.GESTURE_THRESHOLD_ACTIVATE
