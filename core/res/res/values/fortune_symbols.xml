@@ -88,4 +88,7 @@
     <java-symbol type="array" name="config_displayModeMappings" />
     <java-symbol type="bool" name="config_defaultAntiFlicker" />
 
+    <!-- Camera -->
+    <java-symbol type="array" name="config_cameraHFRPrivAppList" />
+
 </resources>
