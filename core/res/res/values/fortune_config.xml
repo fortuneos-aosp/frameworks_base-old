@@ -126,4 +126,7 @@
     <!-- Whether device supports an alt. ambient display -->
     <bool name="config_alt_ambient_display">false</bool>
 
+    <!-- Whether to use Richtap vibration -->
+    <bool name="config_usesRichtapVibration">false</bool>
+
 </resources>
