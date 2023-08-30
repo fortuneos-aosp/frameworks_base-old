@@ -25,4 +25,6 @@
 
     <!-- Pocket Lock -->
     <bool name="config_pocketModeSupported">true</bool>
+    <bool name="config_pocketModeLightSensorSupported">true</bool>
+
 </resources>
