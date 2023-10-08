@@ -18,7 +18,9 @@
 package com.android.internal.util.fortune;
 
 import android.app.Application;
+import android.content.Context;
 import android.os.Build;
+import android.os.Binder;
 import android.os.SystemProperties;
 import android.util.Log;
 
@@ -418,6 +420,14 @@ public class PixelPropsUtils {
         setPropValue("MODEL", "Pixel");
         setPropValue("PRODUCT", "sailfish");
         setVersionFieldString("SECURITY_PATCH", "2017-12-05");
+    }
+
+    public static boolean shouldBypassTaskPermission(Context context) {
+        // GMS doesn't have MANAGE_ACTIVITY_TASKS permission
+        final int callingUid = Binder.getCallingUid();
+        final String callingPackage = context.getPackageManager().getNameForUid(callingUid);
+        if (DEBUG) Log.d(TAG, "shouldBypassTaskPermission: callingPackage:" + callingPackage);
+        return callingPackage != null && callingPackage.toLowerCase().contains("google");
     }
 
     private static boolean isCallerSafetyNet() {
