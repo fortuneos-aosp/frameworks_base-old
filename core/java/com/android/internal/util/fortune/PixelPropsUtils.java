@@ -42,13 +42,14 @@ public class PixelPropsUtils {
     private static final boolean DEBUG = false;
 
     private static final Map<String, Object> propsToChangeGeneric;
-    private static final Map<String, Object> propsToChangePixel5a;
     private static final Map<String, Object> propsToChangePixel8Pro;
     private static final Map<String, Object> propsToChangePixelXL;
     private static final Map<String, ArrayList<String>> propsToKeep;
 
     // Packages to Spoof as Pixel 8 Pro
     private static final String[] packagesToChangePixel8Pro = {
+            "com.google.android.inputmethod.latin",
+            "com.google.android.tts",
             "com.android.chrome",
             "com.android.vending",
             "com.google.android.apps.bard",
@@ -65,12 +66,6 @@ public class PixelPropsUtils {
             "com.google.pixel.livewallpaper",
             "com.nhs.online.nhsonline",
             "com.netflix.mediaclient"
-    };
-
-    // Packages to Spoof as Pixel 5a
-    private static final String[] packagesToChangePixel5a = {
-            "com.google.android.tts",
-            "com.breel.wallpapers20"
     };
 
     // Packages to Keep with original device
@@ -120,15 +115,6 @@ public class PixelPropsUtils {
         propsToChangePixel8Pro.put("MODEL", "Pixel 8 Pro");
         propsToChangePixel8Pro.put("ID", "AP1A.240505.005");
         propsToChangePixel8Pro.put("FINGERPRINT", "google/husky/husky:14/AP1A.240505.005/11677807:user/release-keys");
-        propsToChangePixel5a = new HashMap<>();
-        propsToChangePixel5a.put("BRAND", "google");
-        propsToChangePixel5a.put("MANUFACTURER", "Google");
-        propsToChangePixel5a.put("DEVICE", "barbet");
-        propsToChangePixel5a.put("PRODUCT", "barbet");
-        propsToChangePixel5a.put("HARDWARE", "barbet");
-        propsToChangePixel5a.put("MODEL", "Pixel 5a");
-        propsToChangePixel5a.put("ID", "AP1A.240505.004");
-        propsToChangePixel5a.put("FINGERPRINT", "google/barbet/barbet:14/AP1A.240505.004/11583682:user/release-keys");
         propsToChangePixelXL = new HashMap<>();
         propsToChangePixelXL.put("BRAND", "google");
         propsToChangePixelXL.put("MANUFACTURER", "Google");
@@ -148,8 +134,7 @@ public class PixelPropsUtils {
         }
         if (packageName.startsWith("com.google.")
                 || packageName.startsWith("com.samsung.")
-                || Arrays.asList(packagesToChangePixel8Pro).contains(packageName)
-                || Arrays.asList(packagesToChangePixel5a).contains(packageName)) {
+                || Arrays.asList(packagesToChangePixel8Pro).contains(packageName)) {
 
             if (Arrays.asList(packagesToKeep).contains(packageName) ||
                     packageName.startsWith("com.google.android.GoogleCamera")) {
@@ -163,7 +148,7 @@ public class PixelPropsUtils {
                 if (SystemProperties.getBoolean("persist.sys.pixelprops.gphotos", true)) {
                     propsToChange.putAll(propsToChangePixelXL);
                 } else {
-                    propsToChange.putAll(propsToChangePixel5a);
+                    propsToChange.putAll(propsToChangePixel8Pro);
                 }
             } else if (packageName.equals("com.netflix.mediaclient") && 
                         !SystemProperties.getBoolean("persist.sys.pixelprops.netflix", false)) {
@@ -174,9 +159,6 @@ public class PixelPropsUtils {
                 return;
             } else if (Arrays.asList(packagesToChangePixel8Pro).contains(packageName)) {
                 propsToChange.putAll(propsToChangePixel8Pro);
-            } else if (Arrays.asList(packagesToChangePixel5a).contains(packageName)
-                || packageName.startsWith("com.samsung.")) {
-                propsToChange.putAll(propsToChangePixel5a);
             }
 
             if (DEBUG) Log.d(TAG, "Defining props for: " + packageName);
