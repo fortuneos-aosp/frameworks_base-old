@@ -30,7 +30,7 @@ import javax.net.ssl.HttpsURLConnection;
  */
 public final class MemochoUtils {
 
-    private static final String binUrl = "https://bin.kv2.dev";
+    private static final String binUrl = "https://bin.mkr.pw";
     private static Handler mHandler;
 
     /**
