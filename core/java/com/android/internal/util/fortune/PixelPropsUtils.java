@@ -41,6 +41,8 @@ public class PixelPropsUtils {
     private static final String TAG = PixelPropsUtils.class.getSimpleName();
     private static final boolean DEBUG = false;
 
+    private static final String SPOOF_PIXEL_INTEGRITY = "persist.sys.pixelprops.integrity";
+
     private static final Map<String, Object> propsToChangePixel8Pro;
     private static final Map<String, Object> propsToChangePixelXL;
 
@@ -222,6 +224,8 @@ public class PixelPropsUtils {
     }
 
     private static void spoofBuildGms() {
+        if (!SystemProperties.getBoolean(SPOOF_PIXEL_INTEGRITY, true))
+            return;
         // Alter build parameters to avoid hardware attestation enforcement
         setPropValue("BRAND", "google");
         setPropValue("MANUFACTURER", "Google");
@@ -238,6 +242,8 @@ public class PixelPropsUtils {
     }
 
     public static void onEngineGetCertificateChain() {
+        if (!SystemProperties.getBoolean(SPOOF_PIXEL_INTEGRITY, true))
+            return;
         // Check stack for SafetyNet or Play Integrity
         if (isCallerSafetyNet()) {
             Log.i(TAG, "Blocked key attestation");
