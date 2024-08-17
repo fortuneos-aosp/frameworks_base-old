@@ -43,20 +43,20 @@ public class PixelPropsUtils {
 
     private static final String SPOOF_PIXEL_INTEGRITY = "persist.sys.pixelprops.integrity";
 
-    private static final Map<String, Object> propsToChangePixel8Pro;
+    private static final Map<String, Object> propsToChangePixel9Pro;
     private static final Map<String, Object> propsToChangePixelXL;
 
     private static final ComponentName GMS_ADD_ACCOUNT_ACTIVITY = ComponentName.unflattenFromString(
             "com.google.android.gms/.auth.uiflows.minutemaid.MinuteMaidActivity");
 
     static {
-        propsToChangePixel8Pro = new HashMap<>();
-        propsToChangePixel8Pro.put("BRAND", "google");
-        propsToChangePixel8Pro.put("MANUFACTURER", "Google");
-        propsToChangePixel8Pro.put("DEVICE", "husky");
-        propsToChangePixel8Pro.put("PRODUCT", "husky");
-        propsToChangePixel8Pro.put("MODEL", "Pixel 8 Pro");
-        propsToChangePixel8Pro.put("FINGERPRINT", "google/husky/husky:14/AP2A.240805.005/12025142:user/release-keys");
+        propsToChangePixel9Pro = new HashMap<>();
+        propsToChangePixel9Pro.put("BRAND", "google");
+        propsToChangePixel9Pro.put("MANUFACTURER", "Google");
+        propsToChangePixel9Pro.put("DEVICE", "caiman");
+        propsToChangePixel9Pro.put("PRODUCT", "caiman");
+        propsToChangePixel9Pro.put("MODEL", "Pixel 9 Pro");
+        propsToChangePixel9Pro.put("FINGERPRINT", "google/caiman/caiman:14/AD1A.240530.047.U1/12150698:user/release-keys");
         propsToChangePixelXL = new HashMap<>();
         propsToChangePixelXL.put("BRAND", "google");
         propsToChangePixelXL.put("MANUFACTURER", "Google");
@@ -78,7 +78,7 @@ public class PixelPropsUtils {
         final String processName = Application.getProcessName();
         boolean isExcludedProcess = processName != null && (processName.toLowerCase().contains("unstable"));
 
-        String[] packagesToChangePixel8Pro = {
+        String[] packagesToChangePixel9Pro = {
             "com.google.android.apps.aiwallpapers",
             "com.google.android.apps.bard",
             "com.google.android.apps.customization.pixel",
@@ -94,9 +94,9 @@ public class PixelPropsUtils {
             "com.google.android.wallpaper.effects"
         };
 
-        if (Arrays.asList(packagesToChangePixel8Pro).contains(packageName) && !isExcludedProcess) {
+        if (Arrays.asList(packagesToChangePixel9Pro).contains(packageName) && !isExcludedProcess) {
             if (!isPixelDevice) {
-                propsToChange.putAll(propsToChangePixel8Pro);
+                propsToChange.putAll(propsToChangePixel9Pro);
             }
         }
 
@@ -105,7 +105,7 @@ public class PixelPropsUtils {
                 propsToChange.putAll(propsToChangePixelXL);
             } else {
                 if (!isPixelDevice) {
-                    propsToChange.putAll(propsToChangePixel8Pro);
+                    propsToChange.putAll(propsToChangePixel9Pro);
                 }
             }
         }
