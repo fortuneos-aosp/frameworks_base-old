@@ -182,8 +182,6 @@ public interface CentralSurfaces extends Dumpable, LifecycleOwner {
         return contextForUser.getPackageManager();
     }
 
-    void toggleCameraFlash();
-
     boolean updateIsKeyguard();
 
     boolean updateIsKeyguard(boolean forceStateChange);

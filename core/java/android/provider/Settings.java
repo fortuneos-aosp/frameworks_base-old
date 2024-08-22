@@ -6520,15 +6520,6 @@ public final class Settings {
          */
         public static final String FORCE_FULLSCREEN_CUTOUT_APPS = "force_full_screen_cutout_apps";
 
-        /**
-         * Whether the torch launch gesture to double tap or long press the power button when the
-         * screen is off should be enabled. *
-         * 0: disabled
-         * 1: long tap power for torch
-         * @hide
-         */
-        public static final String TORCH_POWER_BUTTON_GESTURE = "torch_power_button_gesture";
-
        /**
          * Whether or not volume button music controls should be enabled to seek media tracks
          * @hide
