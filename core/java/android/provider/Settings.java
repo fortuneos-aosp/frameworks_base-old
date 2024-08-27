@@ -6568,13 +6568,6 @@ public final class Settings {
         public static final String POCKET_JUDGE = "pocket_judge";
 
         /**
-         * Arcane Idle Manager
-         * @hide
-         */
-        @Readable
-        public static final String ARCANE_IDLE_MANAGER = "arcane_idle_manager";
-
-        /**
          * Force full screen for devices with cutout
          * @hide
          */
